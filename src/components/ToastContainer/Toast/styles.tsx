@@ -47,16 +47,21 @@ export const Container = styled(animated.div)<ContainerProps>`
       opacity: 0.8;
       line-height: 16px;
     }
+
   }
   button {
     position: absolute;
-    right: 8px;
-    top: 19px;
+    right: 0px;
+    top: 0px;
     opacity: 0.6;
     border: 0;
     background: transparent;
     color: inherit;
-  }
+    height: 20px;
+    display: flex;
+    justify-content: flex-end;
+    padding: 10px;
+     }
 
   ${props =>
     !props.$hasdecription &&
@@ -67,4 +72,6 @@ export const Container = styled(animated.div)<ContainerProps>`
         margin-top: 0;
       }
     `}
+
+
 `;

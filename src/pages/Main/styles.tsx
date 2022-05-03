@@ -14,6 +14,8 @@ export const Container = styled.div`
         height: 50px;  
         font-size: 12px;
     }
+
+    margin-bottom: 300px;
 `;
 
 

@@ -18,7 +18,8 @@ const Main: React.FC = () => {
     const { register, handleSubmit, reset } = useForm();
     const { addToast } = useToast();
 
-    const[forecastsPeriods, setForeCastPeriods ]= useState<IForecast[]| undefined>();
+    const [forecastsPeriods, setForeCastPeriods ]= useState<IForecast[]| undefined>();
+    const [numberForeCast] = useState(14);
 
 
     
@@ -31,10 +32,10 @@ const Main: React.FC = () => {
 
             //valid form
             const schema = Yup.object().shape({
-                street: Yup.string().required('Street is required!'),
-                city: Yup.string().required('City is required.'),
+                street: Yup.string().required('Street is required'),
+                city: Yup.string().required('City is required'),
                 state: Yup.string().required('State is required'),
-                zip: Yup.number().typeError('ZIP must be a number').required('ZIP is required!')})
+                zip: Yup.number().typeError('ZIP must be a number').required('ZIP is required')})
               await schema.validate(form, {
                 abortEarly: false,
               });
@@ -74,10 +75,10 @@ const Main: React.FC = () => {
             //take forecast
             const foreCastPoint = await api.get( `${process.env.REACT_APP_API_FORCAST}/${cordinates.latitude},${cordinates.longitude}`)
             const forecastAPi = await api.get( foreCastPoint.data.properties.forecast);
-            setForeCastPeriods(forecastAPi.data.properties.periods);
+            setForeCastPeriods(forecastAPi.data.properties.periods.splice(0, numberForeCast));
 
 
-            //take forecast
+            //info
             addToast({
                 type: 'success',
                 title: `Weather forecast found`,
@@ -105,7 +106,7 @@ const Main: React.FC = () => {
         }
 
       
-    },[addToast]);
+    },[addToast, numberForeCast]);
 
 
     const handleClear = useCallback(()=>{
@@ -154,13 +155,13 @@ const Main: React.FC = () => {
                         <Button size="lg" variant="warning" onClick={handleClear} className="btn mb-4 ">clear</Button>
                     </ButtomSpot>
                 </Form>
-        </FormBox >
+          </FormBox >
 
-        {forecastsPeriods &&  forecastsPeriods.length >0  && (
-            <SpotCarrossel>
-                    <Carousel data={forecastsPeriods} />
-            </SpotCarrossel>
-        )}
+          {forecastsPeriods &&  forecastsPeriods.length >0  && (
+              <SpotCarrossel>
+                      <Carousel data={forecastsPeriods} />
+              </SpotCarrossel>
+          )}
 
         </Container >
     )

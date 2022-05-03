@@ -10,9 +10,9 @@ import Page404 from '../pages/404';
 
 const Routes: React.FC = () => (
   <Switch>
-    <Route path="/" exact component={Main} sensitive />
-      <Route path="/main" exact component={Main} sensitive isPrivate={false} />
-    <Route component={Page404} />
+      <Route path="/" exact component={Main} sensitive />
+      <Route path="/main" exact component={Main} sensitive />
+      <Route component={Page404} />
   </Switch >
 );
 

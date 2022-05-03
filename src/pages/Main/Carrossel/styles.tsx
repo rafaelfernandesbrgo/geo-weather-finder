@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export  const CarroselBlock = styled.div`
     width: 500px;
-    height: 400px;
+    height: 500px;
     background-color: #d4edda;
     display: flex;
     flex-direction: column;

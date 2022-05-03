@@ -10,9 +10,7 @@ interface IProps {
 }
 
 const Carrossel: React.FC<IProps> = ({data}) => {
-
     return (
-
             <Carousel  >
                 {data.map(item => (
                         <Carousel.Item interval={5000} key={item.number}>
