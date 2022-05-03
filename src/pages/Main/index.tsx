@@ -19,7 +19,7 @@ const Main: React.FC = () => {
     const { addToast } = useToast();
 
     const [forecastsPeriods, setForeCastPeriods ]= useState<IForecast[]| undefined>();
-    const [numberForeCast] = useState(14);
+    const [numberForeCast] = useState();
 
 
     
@@ -27,6 +27,8 @@ const Main: React.FC = () => {
 
       //clear to start a new search
       setForeCastPeriods(undefined);
+
+      console.log(form)
 
         try {
 
@@ -75,7 +77,7 @@ const Main: React.FC = () => {
             //take forecast
             const foreCastPoint = await api.get( `${process.env.REACT_APP_API_FORCAST}/${cordinates.latitude},${cordinates.longitude}`)
             const forecastAPi = await api.get( foreCastPoint.data.properties.forecast);
-            setForeCastPeriods(forecastAPi.data.properties.periods.splice(0, numberForeCast));
+            setForeCastPeriods(forecastAPi.data.properties.periods.splice(0, form.numberForeCast));
 
 
             //info
@@ -132,7 +134,14 @@ const Main: React.FC = () => {
                         <p className="mb-0">Enjoy!</p>
                 </Alert>
                     
-                <Form onSubmit={handleSubmit(handleSearch)}>             
+                <Form onSubmit={handleSubmit(handleSearch)}> 
+
+                   <Form.Group>
+                      <Form.Label  className="text-muted "> Number of Forecast</Form.Label>
+                      <Form.Control {...register("numberForeCast")} type="number" placeholder="type the number" />
+                    </Form.Group>
+
+
                     <Form.Group>
                     <Form.Label  className="text-muted "> street</Form.Label>
                     <Form.Control {...register("street")} type="street" placeholder="type the street" />

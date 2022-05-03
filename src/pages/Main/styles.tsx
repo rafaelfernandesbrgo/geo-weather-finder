@@ -18,19 +18,15 @@ export const Container = styled.div`
     margin-bottom: 300px;
 `;
 
-
-
 export  const FormBox = styled.div`
     margin-top: 50px;
     width: 500px;
 `;
 
-
 export  const ButtomSpot = styled.div`
     justify-content: center;
     display: flex;
 `;
-
 
 export  const SpotCarrossel = styled.div`
 

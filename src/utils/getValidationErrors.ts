@@ -5,8 +5,6 @@ export interface Errors {
 }
 
 
-
-
 //to show error in message
 export function getValidationErrorsMessage(err: ValidationError): string {
   let messages = '';
