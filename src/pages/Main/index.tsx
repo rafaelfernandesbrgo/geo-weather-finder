@@ -17,9 +17,7 @@ const Main: React.FC = () => {
 
     const { register, handleSubmit, reset } = useForm();
     const { addToast } = useToast();
-
     const [forecastsPeriods, setForeCastPeriods ]= useState<IForecast[]| undefined>();
-    const [numberForeCast] = useState();
 
 
     
@@ -27,8 +25,6 @@ const Main: React.FC = () => {
 
       //clear to start a new search
       setForeCastPeriods(undefined);
-
-      console.log(form)
 
         try {
 
@@ -108,7 +104,7 @@ const Main: React.FC = () => {
         }
 
       
-    },[addToast, numberForeCast]);
+    },[addToast]);
 
 
     const handleClear = useCallback(()=>{
